@@ -11,15 +11,10 @@
         "module": "commonjs",
         "baseUrl": "src",
         "paths": {
-            "@code/*": [
-                "day1/*"
-            ]
+            "@code/*": ["day1/*"]
         }
     },
-    "include": [
-        "./src/**/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "files": ["./src/global.d.ts"], // in order to reference global types
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules"]
 }
