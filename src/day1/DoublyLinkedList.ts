@@ -53,7 +53,25 @@ export default class DoublyLinkedList<T> {
         }
         return list;
     }
-    // prepend(item: T): void {}
+    // replace head
+    prepend(item: T): void {
+        const newNode = new Node(item);
+
+        if (this.length === 0 || this.length === 1) {
+            this.head = newNode;
+            this.tail = newNode;
+            return;
+        } else {
+            // at least 2 nodes
+
+            const next = this.head!.next;
+            next!.prev = newNode;
+            newNode.next = next;
+
+            this.head = newNode;
+            return;
+        }
+    }
     insertAt(item: T, idx: number): void {
         if (idx < 0) return undefined;
 
@@ -223,14 +241,15 @@ export default class DoublyLinkedList<T> {
 }
 
 const test = new DoublyLinkedList<number>();
-// test.append(5);
-// test.append(22);
+test.append(5);
+test.append(22);
 // test.append(33);
 // test.append(800);
 console.log(test.getLength());
 // console.log(test.get(5));
 // console.log(test.removeAt(3));
 // console.log(test.remove(22));
-console.log(test.insertAt(11, 1));
+// console.log(test.insertAt(11, 1));
+console.log(test.prepend(7));
 console.log(test.getLength());
 console.log(test.print());
