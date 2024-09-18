@@ -53,24 +53,37 @@ export default class DoublyLinkedList<T> {
         }
         return list;
     }
-    // replace head
+    // add to head && mode current head to next
     prepend(item: T): void {
         const newNode = new Node(item);
 
-        if (this.length === 0 || this.length === 1) {
+        if (this.length === 0) {
             this.head = newNode;
             this.tail = newNode;
-            return;
-        } else {
-            // at least 2 nodes
-
-            const next = this.head!.next;
-            next!.prev = newNode;
-            newNode.next = next;
-
-            this.head = newNode;
+            this.length++;
             return;
         }
+
+        // only 1 node > move current head to tail
+        if (this.head?.next === undefined) {
+            this.tail = this.head;
+            this.tail!.prev = newNode;
+            this.tail!.next = undefined;
+
+            newNode.next = this.tail;
+            this.head = newNode;
+            this.length++;
+            return;
+        }
+
+        // multiple nodes
+
+        this.head.prev = newNode;
+        newNode.next = this.head;
+
+        this.head = newNode;
+        this.length++;
+        return;
     }
     insertAt(item: T, idx: number): void {
         if (idx < 0) return undefined;
@@ -241,8 +254,8 @@ export default class DoublyLinkedList<T> {
 }
 
 const test = new DoublyLinkedList<number>();
-test.append(5);
-test.append(22);
+// test.append(5);
+// test.append(22);
 // test.append(33);
 // test.append(800);
 console.log(test.getLength());
@@ -250,6 +263,10 @@ console.log(test.getLength());
 // console.log(test.removeAt(3));
 // console.log(test.remove(22));
 // console.log(test.insertAt(11, 1));
-console.log(test.prepend(7));
-console.log(test.getLength());
+console.log(test.prepend(5));
 console.log(test.print());
+console.log(test.prepend(7));
+console.log(test.print());
+console.log(test.prepend(9));
+console.log(test.print());
+console.log(test.getLength());
