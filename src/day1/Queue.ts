@@ -8,19 +8,21 @@ class Node<T> {
     next: Node<T> | undefined;
 }
 export default class Queue<T> {
-    public length: number = 0;
-    head: Node<T> | undefined;
-    tail: Node<T> | undefined;
+    public length: number;
+    head?: Node<T>;
+    tail?: Node<T>;
 
-    constructor() {}
+    constructor() {
+        this.head = this.tail = undefined;
+        this.length = 0;
+    }
 
     // add to tail
     enqueue(item: T): void {
         const newNode = new Node(item);
 
         if (this.length === 0) {
-            this.head = newNode;
-            this.tail = newNode;
+            this.head = this.tail = newNode;
         } else {
             this.tail!.next = newNode;
             this.tail = newNode;
@@ -31,12 +33,12 @@ export default class Queue<T> {
     deque(): T | undefined {
         if (this.length === 0) return undefined;
         else if (this.length === 1) {
-            const val = this.head?.value;
+            const head = this.head;
 
             this.head = undefined;
             this.tail = undefined;
             this.length--;
-            return val;
+            return head?.value;
         }
         // multiple nodes
         const head = this.head;
