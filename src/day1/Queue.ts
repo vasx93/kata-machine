@@ -1,4 +1,4 @@
-// queue is a linked list
+// queue is a FIFO linked list
 class Node<T> {
     constructor(item: T) {
         this.value = item;
