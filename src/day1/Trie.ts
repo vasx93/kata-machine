@@ -47,7 +47,7 @@ export default class Trie {
             node = node.children[char];
         }
         this.findAllWords(node, prefix, output);
-        return output;
+        return output.sort();
     }
 
     private findAllWords(node: TrieNode, prefix: string, arr: string[]) {
