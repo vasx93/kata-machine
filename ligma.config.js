@@ -8,6 +8,7 @@ module.exports = {
         "BubbleSort",
         "SinglyLinkedList",
         "DoublyLinkedList",
+        "DjikstraList",
         "Queue",
         "Stack",
         "ArrayList",
@@ -25,5 +26,4 @@ module.exports = {
         "Map",
         "MinHeap",
     ],
-}
-
+};
